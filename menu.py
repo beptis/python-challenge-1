@@ -197,14 +197,24 @@ while place_order:
 
 # Print out the customer's order
 print("\nThis is what we are preparing for you.\n")
-
-# Uncomment the following line to check the structure of the order
-print(order)
-
 print("Item name                 | Price  | Quantity")
 print("--------------------------|--------|----------")
 
 # 6. Loop through the items in the customer's order
+for item in order:
+    item_name = item["Item name"]
+    price = item["Price"]
+    quantity = item["Quantity"]
+
+    # Calculate spaces for formatting
+    num_spaces = 25 - len(item_name)
+    item_name_spaces = " " * num_spaces
+
+    print(f"{item_name}{item_name_spaces}| ${price:.2f}  | {quantity}")
+    
+    # Calculate total using list comprehension
+total_price = sum([item["Price"] * item["Quantity"] for item in order])
+print(f"\nTotal Price: ${total_price:.2f}")
 
     # 7. Store the dictionary items as variables
 
